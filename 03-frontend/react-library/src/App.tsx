@@ -5,14 +5,27 @@ import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { HomePage } from './layouts/HomePage/HomePage';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <div className='d-flex flex-column min-vh-100'>
       <Navbar />
-      {/* <HomePage/> */}
-      <SearchBooksPage/>
-      <Footer/>
+      <div className='flex-grow-1'>
+      <Switch>
+        <Route path='/' exact>
+          {/* <HomePage /> */}
+          <Redirect to='/home'/>
+        </Route>
+        <Route path='/home' >
+          <HomePage />
+        </Route>
+        <Route path='/search'>
+          <SearchBooksPage />
+        </Route>
+      </Switch>
+      </div>
+      <Footer />
     </div>
   );
 }
